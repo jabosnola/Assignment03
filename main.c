@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <net/if_arp.h>
 #include <string.h>
-#include "send_arp.h"
+#include "arp_spoofing.h"
 
 int main(int argc, char *argv[])
 {
