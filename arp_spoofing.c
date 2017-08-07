@@ -56,7 +56,7 @@ void arp_spoofing(pcap_t *handle, struct network_pack *attacker, struct network_
 						memcpy(&ether->ether_shost, &attacker->mac, ETHER_ADDR_LEN);
 						memcpy(&ether->ether_dhost, &target->mac, ETHER_ADDR_LEN);
 
-						if(pcap_sendpacket(handle, packet, header.caplen) == -1)
+						if(pcap_sendpacket(handle, packet, header->caplen) == -1)
 							printf("RELAY ERROR : SENDER -> ATTACKER -> TARGET\n\n");
 						else
 							printf("RELAY OK : SENDER -> ATTACKER -> TARGET\n\n");
@@ -73,7 +73,7 @@ void arp_spoofing(pcap_t *handle, struct network_pack *attacker, struct network_
 						memcpy(&ether->ether_shost, &attacker->mac, ETHER_ADDR_LEN);
 						memcpy(&ether->ether_dhost, &sender->mac, ETHER_ADDR_LEN);
 
-						if(pcap_sendpacket(handle, packet, header.caplen) == -1)
+						if(pcap_sendpacket(handle, packet, header->caplen) == -1)
 							printf("RELAY ERROR : TARGET -> ATTACKER -> SENDER\n\n");
 						else
 							printf("RELAY OK : TARGET -> ATTACKER -> SENDER\n\n");
