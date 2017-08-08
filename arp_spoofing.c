@@ -51,7 +51,7 @@ void arp_spoofing(pcap_t *handle, struct network_pack *attacker, struct network_
 			{
 				if(memcmp(ether->ether_dhost, &attacker->mac, ETHER_ADDR_LEN) == 0)
 				{
-					if(memcmp(&ipv4->ip_dst, &target->ip, sizeof(struct in_addr)) != 0)
+					if(memcmp(&ipv4->ip_dst, &attacker->ip, sizeof(struct in_addr)) != 0)
 					{
 						memcpy(&ether->ether_shost, &attacker->mac, ETHER_ADDR_LEN);
 						memcpy(&ether->ether_dhost, &target->mac, ETHER_ADDR_LEN);
@@ -68,7 +68,7 @@ void arp_spoofing(pcap_t *handle, struct network_pack *attacker, struct network_
 			{
 				if(memcmp(ether->ether_dhost, &attacker->mac, ETHER_ADDR_LEN) == 0)
 				{
-					if(memcmp(&ipv4->ip_dst, &sender->ip, sizeof(struct in_addr)) != 0)
+					if(memcmp(&ipv4->ip_dst, &sender->ip, sizeof(struct in_addr)) == 0)
 					{
 						memcpy(&ether->ether_shost, &attacker->mac, ETHER_ADDR_LEN);
 						memcpy(&ether->ether_dhost, &sender->mac, ETHER_ADDR_LEN);

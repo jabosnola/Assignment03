@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 	}
 
 	dev = argv[1];
-	inet_pton(AF_INET, argv[2], &sender.ip);
-	inet_pton(AF_INET, argv[3], &target.ip);
+	inet_aton(argv[2], &sender.ip);
+	inet_aton(argv[3], &target.ip);
 
 	handle = pcap_open_live(dev, BUFSIZ, 1, 1, errbuf);
 	if (handle == NULL) {

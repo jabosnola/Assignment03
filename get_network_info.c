@@ -14,7 +14,7 @@ void get_network_info(char *dev, struct network_pack *network){
 	fgets(imm, sizeof(imm), fp);
 	pclose(fp);
 	printf("Attacker's IP: %s\n", imm);
-	inet_pton(AF_INET, imm, &network->ip);
+	inet_aton(imm, &network->ip);
 	//MAC address//
 	sprintf(cmd, "ifconfig | grep '%s' | awk '{print$5}'",dev);
 	fp = popen(cmd, "r");

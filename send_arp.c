@@ -28,6 +28,7 @@ void send_arp(pcap_t *handle, struct network_pack *net1, struct network_pack *ne
     
     while(1) 
     {
+	printf("1\n\n");
     	if(pcap_sendpacket(handle, packet, sizeof(packet)) == -1)
     	{
     		printf("error\n");
@@ -35,5 +36,6 @@ void send_arp(pcap_t *handle, struct network_pack *net1, struct network_pack *ne
     	}
     	else
     		break;
+	printf("2\n\n");
     }
 }
