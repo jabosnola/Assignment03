@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 	}
 
 	dev = argv[1];
-	inet_aton(argv[2], &sender.ip);
-	inet_aton(argv[3], &target.ip);
+	inet_pton(AF_INET, argv[2], &sender.ip);
+	inet_pton(AF_INET, argv[3], &target.ip);
 
 	handle = pcap_open_live(dev, BUFSIZ, 1, 1, errbuf);
 	if (handle == NULL) {
@@ -40,15 +40,21 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("Device: %s\n\n", dev);
-
+	
+	//get network information//
 	get_network_info(dev, &attacker);
+
+	//send ARP Request Packet//
 	arp_request(handle, &attacker, &target);
 	arp_request(handle, &attacker, &sender);
-	//attack sender//
+	
+	//Attack sender//
 	send_arp(handle, &attacker, &target, &sender);
-	//attack target//
+	
+	//Attack target//
 	send_arp(handle, &attacker, &sender, &target);
-	//arp spoofing//
+	
+	//ARP spoofing//
 	arp_spoofing(handle, &attacker, &sender, &target);
 
 	return(0);

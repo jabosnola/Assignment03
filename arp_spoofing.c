@@ -12,8 +12,10 @@ void arp_spoofing(pcap_t *handle, struct network_pack *attacker, struct network_
 	while(1)
 	{
 		state = pcap_next_ex(handle, &header, &packet);
+		
 		if (state < 1)
 			continue;
+		
 		ether = (struct ether_header *)packet;
 
 		//ARP PACKET- > RE-INFECTION//
